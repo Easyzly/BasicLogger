@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 const port = 3000;
+const dataFilePath = './data.json';
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -61,6 +62,33 @@ app.post('/log', (req, res) => {
         fs.writeFile('data.json', JSON.stringify(jsonData, null, 2), (err) => {
             if (err) throw err;
             res.status(200).send('Log saved');
+        });
+    });
+});
+
+app.delete('/log/:id', (req, res) => {
+    const logId = req.params.id;
+
+    fs.readFile(dataFilePath, 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).send('Error reading data file');
+        }
+
+        const jsonData = JSON.parse(data);
+        const logIndex = jsonData.logs.findIndex(log => log.id === logId);
+
+        if (logIndex === -1) {
+            return res.status(404).send('Log not found');
+        }
+
+        jsonData.logs.splice(logIndex, 1);
+
+        fs.writeFile(dataFilePath, JSON.stringify(jsonData, null, 2), (err) => {
+            if (err) {
+                return res.status(500).send('Error writing data file');
+            }
+
+            res.send('Log deleted successfully');
         });
     });
 });

@@ -23,10 +23,12 @@ class Country {
 }
 
 class Log {
-    constructor(name, description, cost) {
+    constructor(name, description, cost, date = new Date().toISOString()) {
+        this.id = `log-${Date.now()}`;
         this.name = name;
         this.description = description;
         this.cost = cost;
+        this.date = date;
     }
 }
 
@@ -123,6 +125,34 @@ submitLogButton.addEventListener('click', () => {
         .catch(error => console.error('Error:', error));
 });
 
+const attachDeleteEventListeners = () => {
+    const deleteButtons = document.querySelectorAll('.delete-log-button');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const logId = event.target.getAttribute('data-id');
+            if (logId) {
+                deleteLog(logId);
+            } else {
+                console.error('Log ID is undefined');
+            }
+        });
+    });
+};
+
+const deleteLog = (logId) => {
+    fetch(`http://localhost:3000/log/${logId}`, {
+        method: 'DELETE',
+    })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);
+            fetchLogs().then(() => {
+                fetchCountry(); // Recalculate remaining money
+            });
+        })
+        .catch(error => console.error('Error:', error));
+};
+
 const fetchLogs = () => {
     return fetch('http://localhost:3000/logs')
         .then(response => response.json())
@@ -131,13 +161,16 @@ const fetchLogs = () => {
             logs.forEach(log => {
                 const logElement = document.createElement('div');
                 logElement.classList.add('log-entry', 'p-4', 'mb-4', 'bg-white', 'shadow-md', 'rounded');
-                logElement.innerHTML = `
+                 logElement.innerHTML = `
                     <h3 class="text-lg font-bold">${log.name}</h3>
                     <p class="text-gray-700">${log.description}</p>
                     <p class="text-gray-500">Cost: ${log.cost}</p>
+                    <p class="text-gray-500">Date: ${new Date(log.date).toLocaleString()}</p>
+                    <button class="delete-log-button bg-red-500 text-white px-2 py-1 rounded" data-id="${log.id}">Delete</button>
                 `;
                 logContainer.appendChild(logElement);
             });
+            attachDeleteEventListeners();
             return logs; // Return logs for further processing
         })
         .catch(error => console.error('Error:', error));
