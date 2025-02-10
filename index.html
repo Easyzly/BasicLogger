@@ -8,7 +8,10 @@
     <title>Basic Logger</title>
 </head>
 <body class="bg-gray-100 p-6">
-<button id="toggle-button" class="bg-blue-500 text-white px-4 py-2 rounded">Toggle menu</button>
+    <div class="flex gap-2">
+        <button id="toggle-create-menu" class="bg-blue-600 text-white px-4 py-2 rounded">Toggle Create Menu</button>
+        <button id="toggle-settings-menu" class="bg-green-600 text-white px-4 py-2 rounded">Toggle Settings Menu</button>
+    </div>
 
 <div id="create-menu" class="hidden mt-4 p-4 bg-white shadow-md rounded">
     <div class="mb-4">
@@ -25,6 +28,8 @@
     </div>
     <button id="submit-button" type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Create</button>
 </div>
+
+<div id="log-container" class="mt-4"></div>
 
 <script type="module" src="main.js"></script>
 </body>

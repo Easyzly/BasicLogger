@@ -1,9 +1,11 @@
-const toggleButton = document.getElementById('toggle-button');
+const toggleButton = document.getElementById('toggle-create-menu');
 const createMenu = document.getElementById('create-menu');
 const nameInput = document.getElementById('name-input');
 const descriptionInput = document.getElementById('description-input');
 const costInput = document.getElementById('cost-input');
 const submitButton = document.getElementById('submit-button');
+const logContainer = document.getElementById('log-container');
+
 
 class log {
     constructor(name, description, cost) {
@@ -43,3 +45,24 @@ submitButton.addEventListener('click', () => {
     })
     .catch(error => console.error('Error:', error));
 });
+
+const fetchLogs = () => {
+    fetch('http://localhost:3000/logs')
+        .then(response => response.json())
+        .then(logs => {
+            logContainer.innerHTML = '';
+            logs.forEach(log => {
+                const logElement = document.createElement('div');
+                logElement.classList.add('log-entry');
+                logElement.innerHTML = `
+                    <h3>${log.name}</h3>
+                    <p>${log.description}</p>
+                    <p>Cost: ${log.cost}</p>
+                `;
+                logContainer.appendChild(logElement);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+};
+
+document.addEventListener('DOMContentLoaded', fetchLogs);

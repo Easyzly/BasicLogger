@@ -33,12 +33,30 @@ app.post('/log', (req, res) => {
     const newLog = req.body;
     fs.readFile('data.json', (err, data) => {
         if (err) throw err;
-        const logs = JSON.parse(data);
+        let logs;
+        try {
+            logs = JSON.parse(data);
+        } catch (e) {
+            logs = [];
+        }
         logs.push(newLog);
         fs.writeFile('data.json', JSON.stringify(logs, null, 2), (err) => {
             if (err) throw err;
             res.status(200).send('Log saved');
         });
+    });
+});
+
+app.get('/logs', (req, res) => {
+    fs.readFile('data.json', (err, data) => {
+        if (err) throw err;
+        let logs;
+        try {
+            logs = JSON.parse(data);
+        } catch (e) {
+            logs = [];
+        }
+        res.status(200).json(logs);
     });
 });
 
