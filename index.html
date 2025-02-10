@@ -9,44 +9,44 @@
 </head>
 <body class="bg-gray-100 p-6">
     <div class="flex gap-2">
-        <button id="toggle-create-menu" class="bg-blue-600 text-white px-4 py-2 rounded">Toggle Create Menu</button>
-        <button id="toggle-settings-menu" class="bg-green-600 text-white px-4 py-2 rounded">Toggle Settings Menu</button>
+        <button id="toggle-log-menu" class="bg-blue-600 text-white px-4 py-2 rounded">Toggle Log Menu</button>
+        <button id="toggle-country-menu" class="bg-green-600 text-white px-4 py-2 rounded">Toggle Country Menu</button>
     </div>
 
-   <div id="settings-menu" class="hidden mt-4 p-4 bg-white shadow-md rounded">
+    <div id="country-menu" class="hidden mt-4 p-4 bg-white shadow-md rounded">
         <div class="mb-4">
-            <label for="settings-name-input" class="block text-gray-700">Name</label>
-            <input id="settings-name-input" type="text" name="settings-name" placeholder="Name" class="w-full px-3 py-2 border rounded">
+            <label for="country-name-input" class="block text-gray-700">Name</label>
+            <input id="country-name-input" type="text" name="country-name" placeholder="Name" class="w-full px-3 py-2 border rounded">
         </div>
         <div class="mb-4">
-            <label for="settings-description-input" class="block text-gray-700">Description</label>
-            <input id="settings-description-input" type="text" name="settings-description" placeholder="Description" class="w-full px-3 py-2 border rounded">
+            <label for="country-description-input" class="block text-gray-700">Description</label>
+            <input id="country-description-input" type="text" name="country-description" placeholder="Description" class="w-full px-3 py-2 border rounded">
         </div>
         <div class="mb-4">
-            <label for="current-money-input" class="block text-gray-700">Current Money</label>
-            <input id="current-money-input" readonly type="number" name="current-money" placeholder="Current Money" class="w-full px-3 py-2 border rounded">
+            <label for="country-current-money-input" class="block text-gray-700">Current Money</label>
+            <input id="country-current-money-input" readonly type="number" name="country-current-money" placeholder="Current Money" class="w-full px-3 py-2 border rounded">
         </div>
         <div class="mb-4">
-            <label for="starting-money-input" class="block text-gray-700">Starting Money</label>
-            <input id="starting-money-input" type="number" name="starting-money" placeholder="Starting Money" class="w-full px-3 py-2 border rounded">
+            <label for="country-starting-money-input" class="block text-gray-700">Starting Money</label>
+            <input id="country-starting-money-input" type="number" name="country-starting-money" placeholder="Starting Money" class="w-full px-3 py-2 border rounded">
         </div>
-        <button id="save-settings-button" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save Settings</button>
+        <button id="save-country-button" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save Country</button>
     </div>
 
-    <div id="create-menu" class="hidden mt-4 p-4 bg-white shadow-md rounded">
+    <div id="log-menu" class="hidden mt-4 p-4 bg-white shadow-md rounded">
         <div class="mb-4">
-            <label for="name-input" class="block text-gray-700">Name</label>
-            <input id="name-input" type="text" name="name" placeholder="Name" class="w-full px-3 py-2 border rounded">
+            <label for="log-name-input" class="block text-gray-700">Name</label>
+            <input id="log-name-input" type="text" name="log-name" placeholder="Name" class="w-full px-3 py-2 border rounded">
         </div>
         <div class="mb-4">
-            <label for="description-input" class="block text-gray-700">Description</label>
-            <input id="description-input" type="text" name="description" placeholder="Description" class="w-full px-3 py-2 border rounded">
+            <label for="log-description-input" class="block text-gray-700">Description</label>
+            <input id="log-description-input" type="text" name="log-description" placeholder="Description" class="w-full px-3 py-2 border rounded">
         </div>
         <div class="mb-4">
-            <label for="cost-input" class="block text-gray-700">Cost</label>
-            <input id="cost-input" type="number" name="cost" placeholder="Cost" class="w-full px-3 py-2 border rounded">
+            <label for="log-cost-input" class="block text-gray-700">Cost</label>
+            <input id="log-cost-input" type="number" name="log-cost" placeholder="Cost" class="w-full px-3 py-2 border rounded">
         </div>
-        <button id="submit-button" type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Create</button>
+        <button id="submit-log-button" type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Create</button>
     </div>
 
     <div id="log-container" class="mt-4"></div>
