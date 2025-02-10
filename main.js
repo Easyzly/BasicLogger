@@ -71,7 +71,7 @@ saveCountryButton.addEventListener('click', () => {
 
 const calculateRemainingMoney = (startingMoney, logs) => {
     const totalCost = logs.reduce((sum, log) => sum + parseFloat(log.cost), 0);
-    return startingMoney - totalCost;
+    return startingMoney + totalCost;
 };
 
 const fetchCountry = () => {
@@ -108,17 +108,19 @@ submitLogButton.addEventListener('click', () => {
         },
         body: JSON.stringify(newLog),
     })
-    .then(response => response.text())
-    .then(data => {
-        console.log(data);
-        logNameInput.value = '';
-        logDescriptionInput.value = '';
-        logCostInput.value = '';
-        logMenu.classList.toggle('hidden');
-        console.log('submitted');
-        fetchLogs();
-    })
-    .catch(error => console.error('Error:', error));
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);
+            logNameInput.value = '';
+            logDescriptionInput.value = '';
+            logCostInput.value = '';
+            logMenu.classList.toggle('hidden');
+            console.log('submitted');
+            fetchLogs().then(() => {
+                fetchCountry(); // Recalculate remaining money
+            });
+        })
+        .catch(error => console.error('Error:', error));
 });
 
 const fetchLogs = () => {
@@ -128,11 +130,11 @@ const fetchLogs = () => {
             logContainer.innerHTML = '';
             logs.forEach(log => {
                 const logElement = document.createElement('div');
-                logElement.classList.add('log-entry');
+                logElement.classList.add('log-entry', 'p-4', 'mb-4', 'bg-white', 'shadow-md', 'rounded');
                 logElement.innerHTML = `
-                    <h3>${log.name}</h3>
-                    <p>${log.description}</p>
-                    <p>Cost: ${log.cost}</p>
+                    <h3 class="text-lg font-bold">${log.name}</h3>
+                    <p class="text-gray-700">${log.description}</p>
+                    <p class="text-gray-500">Cost: ${log.cost}</p>
                 `;
                 logContainer.appendChild(logElement);
             });
