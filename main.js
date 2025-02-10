@@ -40,6 +40,49 @@ toggleCountryMenuButton.addEventListener('click', () => {
     logMenu.classList.add('hidden');
 });
 
+saveCountryButton.addEventListener('click', () => {
+    const name = countryNameInput.value;
+    const description = countryDescriptionInput.value;
+    const currentMoney = countryCurrentMoneyInput.value;
+    const startingMoney = countryStartingMoneyInput.value;
+    const newCountry = new Country(name, description, currentMoney, startingMoney);
+    console.log(newCountry);
+
+    fetch('http://localhost:3000/country', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newCountry),
+    })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);
+            countryNameInput.value = '';
+            countryDescriptionInput.value = '';
+            countryCurrentMoneyInput.value = '';
+            countryStartingMoneyInput.value = '';
+            countryMenu.classList.toggle('hidden');
+            console.log('Country saved');
+            fetchCountry();
+        })
+        .catch(error => console.error('Error:', error));
+});
+
+const fetchCountry = () => {
+    fetch('http://localhost:3000/country')
+        .then(response => response.json())
+        .then(country => {
+            if (country) {
+                countryNameInput.value = country.name;
+                countryDescriptionInput.value = country.description;
+                countryCurrentMoneyInput.value = country.currentMoney;
+                countryStartingMoneyInput.value = country.startingMoney;
+            }
+        })
+        .catch(error => console.error('Error:', error));
+};
+
 submitLogButton.addEventListener('click', () => {
     const name = logNameInput.value;
     const description = logDescriptionInput.value;
@@ -86,4 +129,7 @@ const fetchLogs = () => {
         .catch(error => console.error('Error:', error));
 };
 
-document.addEventListener('DOMContentLoaded', fetchLogs);
+document.addEventListener('DOMContentLoaded', () => {
+    fetchLogs();
+    fetchCountry();
+});

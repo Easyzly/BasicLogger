@@ -29,18 +29,36 @@ const initializeDataFile = () => {
 
 initializeDataFile();
 
+app.post('/country', (req, res) => {
+    const newCountry = req.body;
+    fs.readFile('data.json', (err, data) => {
+        if (err) throw err;
+        let jsonData;
+        try {
+            jsonData = JSON.parse(data);
+        } catch (e) {
+            jsonData = { logs: [], country: null };
+        }
+        jsonData.country = newCountry;
+        fs.writeFile('data.json', JSON.stringify(jsonData, null, 2), (err) => {
+            if (err) throw err;
+            res.status(200).send('Country saved');
+        });
+    });
+});
+
 app.post('/log', (req, res) => {
     const newLog = req.body;
     fs.readFile('data.json', (err, data) => {
         if (err) throw err;
-        let logs;
+        let jsonData;
         try {
-            logs = JSON.parse(data);
+            jsonData = JSON.parse(data);
         } catch (e) {
-            logs = [];
+            jsonData = { logs: [], country: null };
         }
-        logs.push(newLog);
-        fs.writeFile('data.json', JSON.stringify(logs, null, 2), (err) => {
+        jsonData.logs.push(newLog);
+        fs.writeFile('data.json', JSON.stringify(jsonData, null, 2), (err) => {
             if (err) throw err;
             res.status(200).send('Log saved');
         });
@@ -50,13 +68,26 @@ app.post('/log', (req, res) => {
 app.get('/logs', (req, res) => {
     fs.readFile('data.json', (err, data) => {
         if (err) throw err;
-        let logs;
+        let jsonData;
         try {
-            logs = JSON.parse(data);
+            jsonData = JSON.parse(data);
         } catch (e) {
-            logs = [];
+            jsonData = { logs: [], country: null };
         }
-        res.status(200).json(logs);
+        res.status(200).json(jsonData.logs);
+    });
+});
+
+app.get('/country', (req, res) => {
+    fs.readFile('data.json', (err, data) => {
+        if (err) throw err;
+        let jsonData;
+        try {
+            jsonData = JSON.parse(data);
+        } catch (e) {
+            jsonData = { logs: [], country: null };
+        }
+        res.status(200).json(jsonData.country);
     });
 });
 
