@@ -53,9 +53,8 @@
             <input id="log-description-input" type="text" name="log-description" placeholder="Description" class="w-full px-3 py-2 border rounded">
         </div>
         <div class="mb-4">
-            <label for="log-cost-input" class="block text-gray-700">Cost</label>
-            <input id="log-cost-input" type="number" name="log-cost" placeholder="Cost" class="w-full px-3 py-2 border rounded">
-        </div>
+            <label for="log-cost-input" class="block text-gray-700">Earning</label>
+            <input id="log-cost-input" type="number" name="log-cost" placeholder="Either 2000 or -2000 for positive or negative numbers" class="w-full px-3 py-2 border rounded" oninput="this.value = this.value.replace(/[^0-9-]/g, '')"> </div>
         <button id="submit-log-button" type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Create</button>
     </div>
 
