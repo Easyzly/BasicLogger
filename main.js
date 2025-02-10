@@ -69,6 +69,11 @@ saveCountryButton.addEventListener('click', () => {
         .catch(error => console.error('Error:', error));
 });
 
+const calculateRemainingMoney = (startingMoney, logs) => {
+    const totalCost = logs.reduce((sum, log) => sum + parseFloat(log.cost), 0);
+    return startingMoney - totalCost;
+};
+
 const fetchCountry = () => {
     fetch('http://localhost:3000/country')
         .then(response => response.json())
@@ -78,6 +83,12 @@ const fetchCountry = () => {
                 countryDescriptionInput.value = country.description;
                 countryCurrentMoneyInput.value = country.currentMoney;
                 countryStartingMoneyInput.value = country.startingMoney;
+
+                // Fetch logs and calculate remaining money
+                fetchLogs().then(logs => {
+                    const remainingMoney = calculateRemainingMoney(parseFloat(country.startingMoney), logs);
+                    countryCurrentMoneyInput.value = remainingMoney;
+                });
             }
         })
         .catch(error => console.error('Error:', error));
@@ -111,7 +122,7 @@ submitLogButton.addEventListener('click', () => {
 });
 
 const fetchLogs = () => {
-    fetch('http://localhost:3000/logs')
+    return fetch('http://localhost:3000/logs')
         .then(response => response.json())
         .then(logs => {
             logContainer.innerHTML = '';
@@ -125,6 +136,7 @@ const fetchLogs = () => {
                 `;
                 logContainer.appendChild(logElement);
             });
+            return logs; // Return logs for further processing
         })
         .catch(error => console.error('Error:', error));
 };
