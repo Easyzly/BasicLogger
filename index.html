@@ -13,24 +13,44 @@
         <button id="toggle-settings-menu" class="bg-green-600 text-white px-4 py-2 rounded">Toggle Settings Menu</button>
     </div>
 
-<div id="create-menu" class="hidden mt-4 p-4 bg-white shadow-md rounded">
-    <div class="mb-4">
-        <label for="name-input" class="block text-gray-700">Name</label>
-        <input id="name-input" type="text" name="name" placeholder="Name" class="w-full px-3 py-2 border rounded">
+   <div id="settings-menu" class="hidden mt-4 p-4 bg-white shadow-md rounded">
+        <div class="mb-4">
+            <label for="settings-name-input" class="block text-gray-700">Name</label>
+            <input id="settings-name-input" type="text" name="settings-name" placeholder="Name" class="w-full px-3 py-2 border rounded">
+        </div>
+        <div class="mb-4">
+            <label for="settings-description-input" class="block text-gray-700">Description</label>
+            <input id="settings-description-input" type="text" name="settings-description" placeholder="Description" class="w-full px-3 py-2 border rounded">
+        </div>
+        <div class="mb-4">
+            <label for="current-money-input" class="block text-gray-700">Current Money</label>
+            <input id="current-money-input" readonly type="number" name="current-money" placeholder="Current Money" class="w-full px-3 py-2 border rounded">
+        </div>
+        <div class="mb-4">
+            <label for="starting-money-input" class="block text-gray-700">Starting Money</label>
+            <input id="starting-money-input" type="number" name="starting-money" placeholder="Starting Money" class="w-full px-3 py-2 border rounded">
+        </div>
+        <button id="save-settings-button" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save Settings</button>
     </div>
-    <div class="mb-4">
-        <label for="description-input" class="block text-gray-700">Description</label>
-        <input id="description-input" type="text" name="description" placeholder="Description" class="w-full px-3 py-2 border rounded">
-    </div>
-    <div class="mb-4">
-        <label for="cost-input" class="block text-gray-700">Cost</label>
-        <input id="cost-input" type="number" name="cost" placeholder="Cost" class="w-full px-3 py-2 border rounded">
-    </div>
-    <button id="submit-button" type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Create</button>
-</div>
 
-<div id="log-container" class="mt-4"></div>
+    <div id="create-menu" class="hidden mt-4 p-4 bg-white shadow-md rounded">
+        <div class="mb-4">
+            <label for="name-input" class="block text-gray-700">Name</label>
+            <input id="name-input" type="text" name="name" placeholder="Name" class="w-full px-3 py-2 border rounded">
+        </div>
+        <div class="mb-4">
+            <label for="description-input" class="block text-gray-700">Description</label>
+            <input id="description-input" type="text" name="description" placeholder="Description" class="w-full px-3 py-2 border rounded">
+        </div>
+        <div class="mb-4">
+            <label for="cost-input" class="block text-gray-700">Cost</label>
+            <input id="cost-input" type="number" name="cost" placeholder="Cost" class="w-full px-3 py-2 border rounded">
+        </div>
+        <button id="submit-button" type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Create</button>
+    </div>
 
-<script type="module" src="main.js"></script>
+    <div id="log-container" class="mt-4"></div>
+
+    <script type="module" src="main.js"></script>
 </body>
 </html>

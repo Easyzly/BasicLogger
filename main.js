@@ -1,11 +1,26 @@
-const toggleButton = document.getElementById('toggle-create-menu');
+const toggleCreateMenuButton = document.getElementById('toggle-create-menu');
 const createMenu = document.getElementById('create-menu');
 const nameInput = document.getElementById('name-input');
 const descriptionInput = document.getElementById('description-input');
 const costInput = document.getElementById('cost-input');
 const submitButton = document.getElementById('submit-button');
 const logContainer = document.getElementById('log-container');
+const toggleSettingsMenuButton = document.getElementById('toggle-settings-menu');
+const settingsMenu = document.getElementById('settings-menu');
+const countryNameInput = document.getElementById('country-name-input');
+const countryDescriptionInput = document.getElementById('country-description-input');
+const currentMoneyInput = document.getElementById('current-money-input');
+const startingMoneyInput = document.getElementById('starting-money-input');
 
+
+class country {
+    constructor(name, description, currentMoney, startingMoney) {
+        this.name = name;
+        this.description = description;
+        this.currentMoney = currentMoney;
+        this.startingMoney = startingMoney;
+    }
+}
 
 class log {
     constructor(name, description, cost) {
@@ -15,9 +30,14 @@ class log {
     }
 }
 
-toggleButton.addEventListener('click', () => {
+toggleCreateMenuButton.addEventListener('click', () => {
     createMenu.classList.toggle('hidden');
-    console.log('clicked');
+    settingsMenu.classList.add('hidden');
+});
+
+toggleSettingsMenuButton.addEventListener('click', () => {
+    settingsMenu.classList.toggle('hidden');
+    createMenu.classList.add('hidden');
 });
 
 submitButton.addEventListener('click', () => {
