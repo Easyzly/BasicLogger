@@ -5,6 +5,7 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 const dataFilePath = './data.json';
+const path = require('path');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -117,6 +118,10 @@ app.get('/country', (req, res) => {
         }
         res.status(200).json(jsonData.country);
     });
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(port, () => {
