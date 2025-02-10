@@ -14,8 +14,8 @@ class log {
 }
 
 toggleButton.addEventListener('click', () => {
-   createMenu.classList.toggle('hidden');
-   console.log('clicked');
+    createMenu.classList.toggle('hidden');
+    console.log('clicked');
 });
 
 submitButton.addEventListener('click', () => {
@@ -24,9 +24,22 @@ submitButton.addEventListener('click', () => {
     const cost = costInput.value;
     const newLog = new log(name, description, cost);
     console.log(newLog);
-    nameInput.value = '';
-    descriptionInput.value = '';
-    costInput.value = '';
-    createMenu.classList.toggle('hidden');
-    console.log('submitted');
+
+    fetch('http://localhost:3000/log', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newLog),
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
+        nameInput.value = '';
+        descriptionInput.value = '';
+        costInput.value = '';
+        createMenu.classList.toggle('hidden');
+        console.log('submitted');
+    })
+    .catch(error => console.error('Error:', error));
 });
