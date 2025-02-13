@@ -14,10 +14,9 @@ const countryStartingMoneyInput = document.getElementById('country-starting-mone
 const saveCountryButton = document.getElementById('save-country-button');
 
 class Country {
-    constructor(name, description, currentMoney, startingMoney) {
+    constructor(name, description, startingMoney) {
         this.name = name;
         this.description = description;
-        this.currentMoney = currentMoney;
         this.startingMoney = startingMoney;
     }
 }
@@ -45,7 +44,6 @@ toggleCountryMenuButton.addEventListener('click', () => {
 saveCountryButton.addEventListener('click', () => {
     const name = countryNameInput.value;
     const description = countryDescriptionInput.value;
-    const currentMoney = countryCurrentMoneyInput.value;
     const startingMoney = countryStartingMoneyInput.value;
     const newCountry = new Country(name, description, currentMoney, startingMoney);
     console.log(newCountry);
@@ -83,13 +81,11 @@ const fetchCountry = () => {
             if (country) {
                 countryNameInput.value = country.name;
                 countryDescriptionInput.value = country.description;
-                countryCurrentMoneyInput.value = country.currentMoney;
                 countryStartingMoneyInput.value = country.startingMoney;
 
                 // Fetch logs and calculate remaining money
                 fetchLogs().then(logs => {
-                    const remainingMoney = calculateRemainingMoney(parseFloat(country.startingMoney), logs);
-                    countryCurrentMoneyInput.value = remainingMoney;
+                    countryCurrentMoneyInput.value = calculateRemainingMoney(parseFloat(country.startingMoney), logs);
                 });
             }
         })
