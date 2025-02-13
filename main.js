@@ -45,7 +45,7 @@ saveCountryButton.addEventListener('click', () => {
     const name = countryNameInput.value;
     const description = countryDescriptionInput.value;
     const startingMoney = countryStartingMoneyInput.value;
-    const newCountry = new Country(name, description, currentMoney, startingMoney);
+    const newCountry = new Country(name, description, startingMoney);
     console.log(newCountry);
 
     fetch('http://localhost:3000/country', {
@@ -79,8 +79,8 @@ const fetchCountry = () => {
         .then(response => response.json())
         .then(country => {
             if (country) {
-                countryNameInput.value = country.name;
-                countryDescriptionInput.value = country.description;
+                countryNameInput.value = country.name ?? '';
+                countryDescriptionInput.value = country.description ?? '';
                 countryStartingMoneyInput.value = country.startingMoney;
 
                 // Fetch logs and calculate remaining money
