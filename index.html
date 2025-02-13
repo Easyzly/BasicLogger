@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <title>Basic Logger</title>
+    <title>Basis Logger</title>
 </head>
 
 <style>
@@ -19,43 +19,43 @@
 
 <body class="bg-gray-100 p-6">
     <div class="flex gap-2">
-        <button id="toggle-country-menu" class="bg-green-600 text-white px-4 py-2 rounded">My Country</button>
-        <button id="toggle-log-menu" class="bg-blue-600 text-white px-4 py-2 rounded">Create new log</button>
+        <button id="toggle-country-menu" class="bg-green-600 text-white px-4 py-2 rounded">Mijn Land</button>
+        <button id="toggle-log-menu" class="bg-blue-600 text-white px-4 py-2 rounded">Maak nieuw log</button>
     </div>
 
     <div id="country-menu" class="hidden mt-4 p-4 bg-white shadow-md rounded">
         <div class="mb-4">
-            <label for="country-name-input" class="block text-gray-700">Name</label>
-            <input id="country-name-input" type="text" name="country-name" placeholder="Name" class="w-full px-3 py-2 border rounded">
+            <label for="country-name-input" class="block text-gray-700">Naam</label>
+            <input id="country-name-input" type="text" name="country-name" placeholder="Naam" class="w-full px-3 py-2 border rounded">
         </div>
         <div class="mb-4">
-            <label for="country-description-input" class="block text-gray-700">Description</label>
-            <input id="country-description-input" type="text" name="country-description" placeholder="Description" class="w-full px-3 py-2 border rounded">
+            <label for="country-description-input" class="block text-gray-700">Beschrijving</label>
+            <input id="country-description-input" type="text" name="country-description" placeholder="Beschrijving" class="w-full px-3 py-2 border rounded">
         </div>
         <div class="mb-4">
-            <label for="country-current-money-input" class="block text-gray-700">Current Money</label>
-            <input id="country-current-money-input" readonly type="number" name="country-current-money" placeholder="Current Money" class="w-full px-3 py-2 border rounded">
+            <label for="country-current-money-input" class="block text-gray-700">Huidig Geld</label>
+            <input id="country-current-money-input" readonly type="number" name="country-current-money" placeholder="Huidig Geld" class="w-full px-3 py-2 border rounded">
         </div>
         <div class="mb-4">
-            <label for="country-starting-money-input" class="block text-gray-700">Starting Money</label>
-            <input id="country-starting-money-input" type="number" name="country-starting-money" placeholder="Starting Money" class="w-full px-3 py-2 border rounded">
+            <label for="country-starting-money-input" class="block text-gray-700">Startgeld</label>
+            <input id="country-starting-money-input" type="number" name="country-starting-money" placeholder="Startgeld" class="w-full px-3 py-2 border rounded">
         </div>
-        <button id="save-country-button" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save Country</button>
+        <button id="save-country-button" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Land Opslaan</button>
     </div>
 
     <div id="log-menu" class="hidden mt-4 p-4 bg-white shadow-md rounded">
         <div class="mb-4">
-            <label for="log-name-input" class="block text-gray-700">Name</label>
-            <input id="log-name-input" type="text" name="log-name" placeholder="Name" class="w-full px-3 py-2 border rounded">
+            <label for="log-name-input" class="block text-gray-700">Naam</label>
+            <input id="log-name-input" type="text" name="log-name" placeholder="Naam" class="w-full px-3 py-2 border rounded">
         </div>
         <div class="mb-4">
-            <label for="log-description-input" class="block text-gray-700">Description</label>
-            <input id="log-description-input" type="text" name="log-description" placeholder="Description" class="w-full px-3 py-2 border rounded">
+            <label for="log-description-input" class="block text-gray-700">Beschrijving</label>
+            <input id="log-description-input" type="text" name="log-description" placeholder="Beschrijving" class="w-full px-3 py-2 border rounded">
         </div>
         <div class="mb-4">
-            <label for="log-cost-input" class="block text-gray-700">Earning</label>
-            <input id="log-cost-input" type="number" name="log-cost" placeholder="Either 2000 or -2000 for positive or negative numbers" class="w-full px-3 py-2 border rounded" oninput="this.value = this.value.replace(/[^0-9-]/g, '')"> </div>
-        <button id="submit-log-button" type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Create</button>
+            <label for="log-cost-input" class="block text-gray-700">Inkomsten</label>
+            <input id="log-cost-input" type="number" name="log-cost" placeholder="Bijvoorbeeld 2000 of -2000 voor positieve of negatieve getallen" class="w-full px-3 py-2 border rounded" oninput="this.value = this.value.replace(/[^0-9-]/g, '')"> </div>
+        <button id="submit-log-button" type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Aanmaken</button>
     </div>
 
     <div id="log-container" class="mt-4"></div>
