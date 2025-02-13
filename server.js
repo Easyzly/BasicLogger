@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const helmet = require('helmet'); // Import helmet
 const app = express();
 const port = 3000;
 const dataFilePath = './data.json';
@@ -10,6 +11,7 @@ const path = require('path');
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
+app.use(helmet()); // Use helmet to set various HTTP headers
 
 // Ensure data.json exists and contains an array
 const initializeDataFile = () => {
@@ -122,6 +124,10 @@ app.get('/country', (req, res) => {
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/main.js', (req, res) => {
+    res.sendFile(path.join(__dirname, 'main.js'));
 });
 
 app.listen(port, () => {
