@@ -16,7 +16,7 @@ app.use(helmet()); // Use helmet to set various HTTP headers
 // Ensure data.json exists and contains an array
 const initializeDataFile = () => {
     if (!fs.existsSync('data.json')) {
-        fs.writeFileSync('data.json', '{}');
+        fs.writeFileSync('data.json', '{"logs":[],"country":{}}');
     } else {
         const data = fs.readFileSync('data.json', 'utf8');
         if (!data.trim()) {

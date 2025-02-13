@@ -24,7 +24,7 @@
    2. Open je browser en navigeer naar:
 
        ```
-       http://localhost:3000 (voor macOS en Linux)
+       http://localhost:3000
        ```
 
       of
